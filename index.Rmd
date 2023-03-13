@@ -1,0 +1,402 @@
+---
+title: "Aljabar Linier Matriks"
+subtitle: "Pertemuan 05 <br> Matriks Echelon dan Pangkat Matriks"
+author: "oleh Riana Hadiana"
+institute: "Universitas Serang Raya"
+#date: "updated: `r Sys.Date()`"
+output:
+  xaringan::moon_reader:
+    #css: [default, shinobi]
+    #css: [default, tamu, tamu-fonts]
+    #css: [default, uo, uo-fonts]
+    #css: [default, duke-blue]
+    #css: [default, hygge-duke]
+    #css: [default, hygge]
+    #css: [default, kunoichi]
+    #css: [default, lucy, lucy-fonts]
+    #css: [default, metropolis, metropolis-fonts]
+    #css: [default, middlebury, middlebury-fonts]
+    #css: [default, ninjutsu]
+    #css: [default, rladies, rladies-fonts]
+    #css: [default, robot, robot-fonts]
+    #css: [default, rutgers, rutgers-fonts]
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+      ratio: "16:9"
+---
+
+```{r xaringanExtra, echo=FALSE}
+xaringanExtra::use_xaringan_extra(c("tile_view", "animate_css", "tachyons"))
+```
+
+```{r xaringan-panelset, echo=FALSE}
+xaringanExtra::use_panelset()
+```
+
+```{r xaringan-scribble, echo=FALSE}
+xaringanExtra::use_scribble()
+```
+
+```{r xaringan-logo, echo=FALSE}
+xaringanExtra::use_logo(
+  image_url = "Unsera.png"
+)
+```
+
+```{r xaringanExtra-webcam, echo=FALSE}
+xaringanExtra::use_webcam()
+```
+
+```{r xaringanExtra-search, echo=FALSE}
+xaringanExtra::use_search(show_icon = TRUE)
+```
+
+.pull-left[
+
+# .purple[**Outline**]
+
+- ## Matriks Echelon <br>
+- ## Pangkat Matriks <br>
+- ## Matriks Kebalikan Umum 
+
+
+]
+
+.pull-right[
+
+<br><br><br><br>
+
+![](alin.png)
+]
+
+---
+
+class: center, middle, inverse
+
+# .red[**Matriks Echelon**]
+
+
+---
+
+.pull.center[
+### **Matriks Echelon**]
+
+### Diketahui matriks $\textbf{A}_{n\times n}$ dengan ciri-ciri berikut:
+- ### Sebanyak $r$ buah baris pertama berisi unsur-unsur tak nol, sedangkan $(m-r)$ baris sisanya (di bawahnya) hanya berisi bilangan nol
+- ### Baris dengan unsur tak nol harus diawali dengan 1 (*leading* 1)
+- ### *Leading* 1 suatu baris harus di sebelah kanan *leading* 1 dari baris sebelumnya
+- ### *Leading* 1 pada kolom ke- $j$ adalah satu-satunya unsur tak nol pada kolom ke- $j$ tersebut
+
+### Jika memenuhi sifat 1-3, maka 𝑨 disebut sebagai .red[**matriks echelon baris**]. <br>Jika memenuhi sifat 1-4, maka 𝑨 disebut sebagai .red[**matriks echelon baris tereduksi**].
+
+
+---
+
+.pull.center[
+### **Matriks Echelon**]
+
+### $\textbf{A}=\begin{bmatrix} 1&5&1 \\ 0&1&2 \\ 0&0&1 \end{bmatrix} \quad \textbf{B}=\begin{bmatrix} 1&0&1 \\ 0&1&2 \\ 0&0&1 \end{bmatrix} \quad \textbf{C}=\begin{bmatrix} 1&2&0&1 \\ 0&1&2&2 \\ 0&0&0&1 \end{bmatrix}$
+
+### $\textbf{D}=\begin{bmatrix} 1&3&4 \\ 0&0&0 \\ 0&1&6 \end{bmatrix} \quad \textbf{B}=\begin{bmatrix} 1&4&2 \\ 0&1&2 \\ 0&0&2 \end{bmatrix} \quad \textbf{F}=\begin{bmatrix} 1&0&0&1 \\ 0&1&0&2 \\ 0&0&1&1 \end{bmatrix}$
+
+---
+
+.pull.center[
+### **Matriks Echelon**]
+
+<br><br>
+### $$\textbf{G}=\begin{bmatrix} 1&0&0&0 \\ 0&1&2&0 \\ 0&0&0&1 \\ 0&0&0&0 \end{bmatrix} \quad \textbf{H}=\begin{bmatrix} 1&0&0&0 \\ 0&0&0&0 \\ 0&0&0&0 \\ 0&0&0&0 \end{bmatrix}$$
+
+---
+
+.pull.center[
+### **Matriks Echelon**]
+
+- ### Matriks echelon baris dan matriks echelon baris tereduksi bisa didapat menggunakan Operasi Baris Elementer.
+- ### Setiap matriks $\textbf{A}$ hanya mempunyai 1 (satu) buah bentuk matriks echelon baris tereduksi.
+- ### Jika $\textbf{A}$ adalah persegi dengan $\text{det}(\textbf{A})\ne 0$, maka matriks echelon baris tereduksi dari matriks $\textbf{A}$ adalah matriks identitas.
+
+
+---
+
+.pull.center[
+### **Matriks Echelon**]
+
+### Ubahlah matriks berikut menjadi matriks echelon baris tereduksi dengan Operasi Baris Elementer.
+
+#### $\textbf{A}=\begin{bmatrix} 2&0&-4&6 \\ 1&1&-2&4 \\ 4&2&0&2 \end{bmatrix} \xrightarrow{B_{12}} \begin{bmatrix} 1&1&-2&4 \\ \dots&\dots&\dots&\dots \\ \dots&\dots&\dots&\dots \end{bmatrix} \xrightarrow[B_{31(-4)}]{B_{21(-2)}} \begin{bmatrix} 1&1&-2&4 \\ \dots&\dots&\dots&\dots \\ \dots&\dots&\dots&\dots \end{bmatrix} \xrightarrow{B_{32(-1)}}$
+
+#### $\begin{bmatrix} 1&1&-2&4 \\ \dots&\dots&\dots&\dots \\ \dots&\dots&\dots&\dots \end{bmatrix} \xrightarrow{B_{2\left(\frac{1}{2}\right)}} \begin{bmatrix} 1&1&-2&4 \\ \dots&\dots&\dots&\dots \\ \dots&\dots&\dots&\dots \end{bmatrix} \xrightarrow{B_{3\left(\frac{1}{8}\right)}} \begin{bmatrix} 1&1&-2&4 \\ \dots&\dots&\dots&\dots \\ \dots&\dots&\dots&\dots \end{bmatrix} \xrightarrow{B_{13(2)}}$
+
+#### $\begin{bmatrix} \dots&\dots&\dots&\dots \\ \dots&\dots&\dots&\dots \\ \dots&\dots&\dots&\dots \end{bmatrix} \xrightarrow{B_{12(-1)}} \begin{bmatrix} \dots&\dots&\dots&\dots \\ \dots&\dots&\dots&\dots \\ \dots&\dots&\dots&\dots \end{bmatrix}$
+
+
+---
+
+.pull.center[
+### **Matriks Echelon**]
+
+### Ubahlah matriks berikut menjadi matriks echelon baris tereduksi dengan Operasi Baris Elementer.
+
+#### $\textbf{A}=\begin{bmatrix} 2&0&-4&6 \\ 1&1&-2&4 \\ 4&2&0&2 \end{bmatrix} \xrightarrow{B_{12}} \begin{bmatrix} 1&1&-2&4 \\ 2&0&-4&6 \\ 4&2&0&2 \end{bmatrix} \xrightarrow[B_{31(-4)}]{B_{21(-2)}} \begin{bmatrix} 1&1&-2&4 \\ 0&-2&0&-2 \\ 0&-2&8&-14 \end{bmatrix} \xrightarrow{B_{32(-1)}}$
+
+#### $\begin{bmatrix} 1&1&-2&4 \\ 0&-2&0&-2 \\ 0&0&8&-12 \end{bmatrix} \xrightarrow{B_{2\left(\frac{1}{2}\right)}} \begin{bmatrix} 1&1&-2&4 \\ 0&1&0&1 \\ 0&0&8&-12 \end{bmatrix} \xrightarrow{B_{3\left(\frac{1}{8}\right)}} \begin{bmatrix} 1&1&-2&4 \\ 0&1&0&1 \\ 0&0&1&-\frac{12}{8} \end{bmatrix} \xrightarrow{B_{13(2)}}$
+
+#### $\begin{bmatrix} 1&1&0&1 \\ 0&1&0&1 \\ 0&0&1&-\frac{12}{8} \end{bmatrix} \xrightarrow{B_{12(-1)}} \begin{bmatrix} 1&0&0&0 \\ 0&1&0&1 \\ 0&0&1&-\frac{12}{8} \end{bmatrix}$
+
+---
+
+.pull.center[
+### **Matriks Echelon**]
+
+### Ubahlah matriks berikut menjadi matriks echelon baris tereduksi dengan Operasi Baris Elementer.
+
+### $\textbf{B}=\begin{bmatrix} 2&-1&1&6 \\ 1&-3&1&-2 \\ 1&2&-1&3 \end{bmatrix}$
+
+---
+
+.pull.center[
+### **Pangkat Matriks (Matrix Rank)**
+]
+
+### Pangkat dari sebuah matriks $\textbf{A}_{m\times n}$, dilambangkan $r(\textbf{A})$, adalah ordo anak matriks persegi $\textbf{A}$ yang terbesar dan deeterminannya $\ne 0$.
+
+### $\textbf{A}=\begin{bmatrix} 1&5&1 \\ 0&1&2 \\ 0&0&1 \end{bmatrix} \Rightarrow \text{det}(\textbf{A})=1\ne 0 \Rightarrow \text{Pangkat }\textbf{A}=r(\textbf{A})=3$
+
+### $\textbf{B}=\begin{bmatrix} 1&5&1 \\ 0&0&2 \\ 0&0&1 \end{bmatrix} \Rightarrow \text{det}(\textbf{B})=0 \Rightarrow \text{Pangkat }\textbf{B}=r(\textbf{B})\ne3$
+
+---
+
+.pull.center[
+### **Pangkat Matriks (Matrix Rank)**
+]
+
+### Pangkat dari sebuah matriks $\textbf{A}_{m\times n}$, dilambangkan $r(\textbf{A})$, adalah ordo anak matriks persegi $\textbf{A}$ yang terbesar dan deeterminannya $\ne 0$.
+
+### $\textbf{B}=\begin{bmatrix} 1&\color{red}{\textbf{5}}&\color{red}{\textbf{1}} \\ 0&\color{red}{\textbf{0}}&\color{red}{\textbf{2}} \\ 0&0&1 \end{bmatrix} \Rightarrow \text{det}\begin{bmatrix} \color{red}{\textbf{5}}&\color{red}{\textbf{1}} \\ \color{red}{\textbf{0}}&\color{red}{\textbf{2}} \end{bmatrix}=10 \Rightarrow \text{Pangkat }\textbf{B}=r(\textbf{B})=\color{red}{\mathbf{2}}$
+
+---
+
+.pull.center[
+### **Pangkat Matriks (Matrix Rank)**]
+
+- ### Untuk sebuah matriks $\textbf{A}_{m\times n}$, maka $r(\textbf{A})\le\text{min}(m,n)$, atau dengan kata lain pangkat dari matriks $\textbf{A}$ tidak akan melebihi banyak baris dan kolomnya.
+
+- ### Untuk $\textbf{A}_{n\times n}$ dengan $r(\textbf{A})=n$, maka $\textbf{A}$ disebut sebagai .red[**matriks berpangkat penuh**] (a full-rank matrix)
+
+- ### Untuk $\textbf{A}_{m\times n}$ dengan $m<n$ dan $r(\textbf{A})=m$, maka $\textbf{A}$ disebut sebagai .red[**matriks berpangkat baris penuh**] (a full-row-rank matrix)
+
+- ### Untuk $\textbf{A}_{m\times n}$ dengan $m>n$ dan $r(\textbf{A})=n$, maka $\textbf{A}$ disebut sebagai .red[**matriks berpangkat kolom penuh**] (a full-column-rank matrix)
+- ### Operasi baris/kolom elementer tidak mengubah pangkat dari sebuah matriks
+
+---
+
+.pull.center[
+### **Pangkat Matriks (Matrix Rank)**]
+
+### Tentukan pangkat matriks berikut 
+
+### $\textbf{A}=\begin{bmatrix} 2&-1&6 \\ 1&1&-1 \end{bmatrix} \qquad \textbf{B}=\begin{bmatrix} 1&-2&0 \\ -2&4&0 \\ 4&-8&0 \end{bmatrix}$
+
+---
+
+class: center, middle, inverse
+
+# .red[**Matriks Kebalikan Umum (MKU)**]
+
+---
+
+.pull.center[
+# **Matriks Kebalikan Umum (MKU)**]
+
+- ### Matriks kebalikan umum bagi $\textbf{A}_{m\times n}$ dilambangkan $\textbf{G}_{n\times n}$  adalah matriks yang memenuhi $\textbf{AGA}=\textbf{A}$
+
+- ### Notasi lain dari $\textbf{G}$ adalah $\textbf{A}^-$ sehingga $\textbf{AA}^-\textbf{A}=\textbf{A}$ 
+
+- ### Jika $\textbf{A}_{n\times n}$ merupakan matriks non-singular, MKU bagi $\textbf{A}$ adalah $\textbf{A}^{-1}$
+
+- ### MKU bagi $\textbf{A}$ tidak unik kecuali jika $\textbf{A}$ adalah matriks persegi non-singular 
+
+
+---
+
+.pull.center[
+### **Algoritma Menentukan MKU**]
+
+1. #### Tentukan pangkat dari matriks $\textbf{A}$, misalnya $k$
+1. #### Cari anak matriks persegi berukuran $k\times k$ yang non-singular, sebut saja $\textbf{W}$
+1. #### Cari invers dari $\textbf{W}$, yaitu $\textbf{W}^{-1}$
+1. #### Transpose matriks $\textbf{W}^{-1}$, yaitu $(\textbf{W}^{-1})^T$
+1. #### Ganti unsur di $\textbf{A}$ dengan unsur $(\textbf{W}^{-1})^T$ pada posisi yang sama dengan posisi anak matriks yang digunakan
+1. #### Ganti unsur $\textbf{A}$ yang lain dengan 0 (nol)
+1. #### Transpose matriks tersebut adalah matriks $\textbf{G}$ (matriks kebalikan umum)
+
+
+---
+
+.pull.center[
+### **Algoritma Menentukan MKU**]
+
+.pull-left[
+
+1. #### Tentukan pangkat dari matriks $\textbf{A}$, misalnya $k$
+1. #### Cari anak matriks persegi berukuran $k\times k$ yang non-singular, sebut saja $\textbf{W}$
+1. #### Cari invers dari $\textbf{W}$, yaitu $\textbf{W}^{-1}$
+1. #### Transpose matriks $\textbf{W}^{-1}$, yaitu $(\textbf{W}^{-1})^T$
+1. #### Ganti unsur di $\textbf{A}$ dengan unsur $(\textbf{W}^{-1})^T$ pada posisi yang sama dengan posisi anak matriks yang digunakan
+1. #### Ganti unsur $\textbf{A}$ yang lain dengan 0 (nol)
+1. #### Transpose matriks tersebut adalah matriks $\textbf{G}$ (matriks kebalikan umum)
+
+]
+
+.pull-right[
+
+remun cair
+
+
+]
+---
+
+.pull.center[
+# **Matriks Baris Elementer**]
+
+### Matriks baris elementer adalah matriks yang dihasilkan dari operasi baris elementer terhadap matriks identitas
+
+### $\textbf{M}_{12}=B_{12}(\textbf{I})=B_{12}\left( \begin{bmatrix} 1&0 \\0&1 \end{bmatrix} \right)=\begin{bmatrix} 0&1 \\ 1&0 \end{bmatrix}$
+
+### $\textbf{M}_{12}=B_{12}(\textbf{I})=B_{12}\left( \begin{bmatrix} 1&0&0 \\0&1&0 \\ 0&0&1 \end{bmatrix} \right)=\begin{bmatrix} 0&1&0 \\ 1&0&0 \\ 0&0&1 \end{bmatrix}$
+
+---
+
+.pull.center[
+# **Matriks Baris Elementer**]
+
+### Matriks baris elementer adalah matriks yang dihasilkan dari operasi baris elementer terhadap matriks identitas
+
+### $\textbf{M}_{1(2)}=B_{1(2)}(\textbf{I})=B_{1(2)}\left( \begin{bmatrix} 1&0 \\0&1 \end{bmatrix} \right)=\begin{bmatrix} 2&0 \\0&1 \end{bmatrix}$
+
+### $\textbf{M}_{1(2)}=B_{1(2)}(\textbf{I})=B_{1(2)}\left( \begin{bmatrix} 1&0&0 \\0&1&0 \\ 0&0&1 \end{bmatrix} \right)=\begin{bmatrix} 2&0&0 \\0&1&0 \\ 0&0&1 \end{bmatrix}$
+
+---
+
+.pull.center[
+# **Matriks Baris Elementer**]
+
+### Matriks baris elementer adalah matriks yang dihasilkan dari operasi baris elementer terhadap matriks identitas
+
+### $\textbf{M}_{12(2)}=B_{12(2)}(\textbf{I})=B_{12(2)}\left( \begin{bmatrix} 1&0 \\0&1 \end{bmatrix} \right)=\begin{bmatrix} 1&2 \\0&1 \end{bmatrix}$
+
+### $\textbf{M}_{12(2)}=B_{12(2)}(\textbf{I})=B_{12(2)}\left( \begin{bmatrix} 1&0&0 \\0&1&0 \\ 0&0&1 \end{bmatrix} \right)=\begin{bmatrix} 1&2&0 \\0&1&0 \\ 0&0&1 \end{bmatrix}$
+
+---
+
+.pull.center[
+### **Determinan Matriks Baris Elementer**]
+
+### $\textbf{M}_{12}=B_{12}(\textbf{I})=\begin{bmatrix} 0&1&0 \\ 1&0&0 \\ 0&0&1 \end{bmatrix} \begin{matrix} \quad \text{det}(\textbf{M}_{12})=-1 \\ \quad \color{red}{\text{det}(\textbf{M}_{ij})=-1} \end{matrix}$
+
+### $\textbf{M}_{1(2)}=B_{1(2)}(\textbf{I})=\begin{bmatrix} 2&0&0 \\0&1&0 \\ 0&0&1 \end{bmatrix} \begin{matrix} \quad \text{det}(\textbf{M}_{1(2)})=2 \\ \quad \color{red}{\text{det}(\textbf{M}_{i(j)})=k} \end{matrix}$
+
+### $\textbf{M}_{12(2)}=B_{12(2)}(\textbf{I})=\begin{bmatrix} 1&2&0 \\0&1&0 \\ 0&0&1 \end{bmatrix} \begin{matrix} \quad \text{det}(\textbf{M}_{12(2)})=1 \\ \quad \color{red}{\text{det}(\textbf{M}_{ij(k)})=1} \end{matrix}$
+
+---
+
+.pull.center[
+### **Operasi Baris Elementer**]
+
+### Melakukan operasi baris elementer terhadap sebuah matriks berukuran $n\times m$ sama dengan melakukan perkalian Matriks Baris Elementer berukuran $n\times n$ dengan matriks yang bersangkutan 
+
+### $\textbf{A}=\begin{bmatrix} 1&2&1 \\ 3&0&2 \\ 2&3&1 \end{bmatrix} \xrightarrow{B_{12}} \begin{bmatrix} 3&0&2 \\ 1&2&1 \\ 2&3&1 \end{bmatrix}$
+### $\textbf{M}_{12}\textbf{A}=\begin{bmatrix} 0&1&0 \\ 1&0&0 \\ 0&0&1 \end{bmatrix}\begin{bmatrix} 1&2&1 \\ 3&0&2 \\ 2&3&1 \end{bmatrix} \xrightarrow{B_{12}} \begin{bmatrix} 3&0&2 \\ 1&2&1 \\ 2&3&1 \end{bmatrix}$
+
+---
+
+.pull.center[
+### **Operasi Baris Elementer**]
+
+### Melakukan operasi baris elementer terhadap sebuah matriks berukuran $n\times m$ sama dengan melakukan perkalian Matriks Baris Elementer berukuran $n\times n$ dengan matriks yang bersangkutan 
+
+### $\textbf{A}=\begin{bmatrix} 1&2&1 \\ 3&0&2 \\ 2&3&1 \end{bmatrix} \xrightarrow{B_{1(2)}} \begin{bmatrix} 2&4&2 \\ 3&0&2 \\ 2&3&1 \end{bmatrix}$
+### $\textbf{M}_{1(2)}\textbf{A}=\begin{bmatrix} 2&0&0 \\ 0&1&0 \\ 0&0&1 \end{bmatrix}\begin{bmatrix} 1&2&1 \\ 3&0&2 \\ 2&3&1 \end{bmatrix} \xrightarrow{B_{1(2)}} \begin{bmatrix} 2&4&2 \\ 3&0&2 \\ 2&3&1 \end{bmatrix}$
+
+---
+
+.pull.center[
+### **Operasi Baris Elementer**]
+
+### Melakukan operasi baris elementer terhadap sebuah matriks berukuran $n\times m$ sama dengan melakukan perkalian Matriks Baris Elementer berukuran $n\times n$ dengan matriks yang bersangkutan 
+
+### $\textbf{A}=\begin{bmatrix} 1&2&1 \\ 3&0&2 \\ 2&3&1 \end{bmatrix} \xrightarrow{B_{12(2)}} \begin{bmatrix} 7&2&5 \\ 3&0&2 \\ 2&3&1 \end{bmatrix}$
+### $\textbf{M}_{12(2)}\textbf{A}=\begin{bmatrix} 1&2&0 \\ 0&1&0 \\ 0&0&1 \end{bmatrix}\begin{bmatrix} 1&2&1 \\ 3&0&2 \\ 2&3&1 \end{bmatrix} \xrightarrow{B_{12(2)}} \begin{bmatrix} 7&2&5 \\ 3&0&2 \\ 2&3&1 \end{bmatrix}$
+
+---
+
+.pull.center[
+### **Determinan Hasil Operasi Baris Elementer**]
+
+### Jika $\textbf{A}$ adalah matriks persegi, maka:
+- ### $\text{det}\left(B_{ij}(\textbf{A})\right)=-\text{det}(\textbf{A})$
+- ### $\text{det}\left(B_{i(k)}(\textbf{A})\right)=k\text{det}(\textbf{A})$
+- ### $\text{det}\left(B_{ij(k)}(\textbf{A})\right)=\text{det}(\textbf{A})$
+- ### Jika $\text{det}(\textbf{A})=0$, maka operasi baris terhadap $\textbf{A}$ akan menghasilkan matriks yang determinannya juga 0 (nol). Sebaliknya jika $\text{det}(\textbf{A})\ne0$, maka operasi baris terhadap $\textbf{A}$ akan menghasilkan matriks yang determinannya juga 0 (nol).
+
+---
+
+.pull.center[
+# **Invers Matriks dengan Operasi Baris Elementer**]
+
+### Jika $\textbf{A}$ adalah matriks persegi dan memiliki invers, maka invers dari matriks $\textbf{A}$ bisa dicari menggunakan Operasi Baris Elementer.
+
+# $$(\textbf{A}|\textbf{I}) \xrightarrow{\color{green}{\textbf{OBE}}} (\textbf{I}|\textbf{A}^{-1})$$
+
+---
+
+.pull.center[
+# **Invers Matriks dengan Operasi Baris Elementer**]
+
+### Tentukan invers matriks $\textbf{A}=\begin{bmatrix} 1&2 \\ 2&3 \end{bmatrix}$ menggunakan Operasi Baris Elementer.
+
+### $\left[\begin{array}{cc|cc} 1&2&1&0 \\ 2&3&0&1 \end{array}\right] \xrightarrow{B_{21(-2)}} \left[\begin{array}{cc|cc} 1&2&1&0 \\ 0&-1&-2&1 \end{array}\right] \xrightarrow{B_{2(-1)}}$
+
+### $\left[\begin{array}{cc|cc} 1&2&1&0 \\ 0&1&2&-1 \end{array}\right] \xrightarrow{B_{12(-2)}} \left[ \begin{array}{cc|cc} 1&0&-3&2 \\ 0&1&2&-1 \end{array} \right]$
+
+---
+
+.pull.center[
+# **Latihan**]
+
+### 1. Tentukan invers matriks-matriks berikut.
+
+### $\textbf{A}=\begin{bmatrix} 3&-1 \\ -5&2 \end{bmatrix} \hspace{2cm} \textbf{B}=\begin{bmatrix} -5&5&1 \\ 5&-6&2 \\ 1&2&-1 \end{bmatrix}$
+
+---
+
+.pull.center[
+# **Latihan**]
+
+### 2. Lengkapilah Operasi Baris Elementer berikut.
+
+### $\textbf{A}=\begin{bmatrix} 1&2&1 \\ 3&0&2 \\ 2&3&1 \end{bmatrix} \xrightarrow{B_{21(-3)}} \begin{bmatrix} 1&2&1 \\ \dots&\dots&\dots \\ 2&3&1 \end{bmatrix} \xrightarrow{B_{31(-2)}} \begin{bmatrix} \end{bmatrix} \xrightarrow{B_{23}}$
+
+### $\begin{bmatrix} \end{bmatrix} \xrightarrow{B_{2(-1)}} \begin{bmatrix} \end{bmatrix} \xrightarrow{B_{32(6)}} \begin{bmatrix} \end{bmatrix} \xrightarrow{B_{3(\frac{1}{5})}} \begin{bmatrix} \end{bmatrix} \xrightarrow{B_{23(-1)}} \begin{bmatrix} \end{bmatrix} \xrightarrow{B_{12(-2)}}\begin{bmatrix} \end{bmatrix} \xrightarrow{B_{13(-1)}} \begin{bmatrix} \end{bmatrix}$
+
+
+---
+
+.pull.center[
+# **Latihan**]
+
+### 3. Tentukan invers matriks-matriks berikut dengan operasi baris elementer.
+
+### $\textbf{A}=\begin{bmatrix} 2&5 \\ 1&2 \end{bmatrix} \hspace{2cm} \textbf{B}=\begin{bmatrix} 1&2&1 \\ 3&0&2 \\ 2&3&1 \end{bmatrix}$
+
+---
+
+class: inverse, middle, center
+
+# Thank you
+# See you next week!
+

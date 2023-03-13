@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Aljabar Linier Matriks</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="oleh Riana Hadiana" />
+    <script src="libs/header-attrs-2.20/header-attrs.js"></script>
+    <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/default-fonts.css" rel="stylesheet" />
+    <link href="libs/tile-view-0.2.6/tile-view.css" rel="stylesheet" />
+    <script src="libs/tile-view-0.2.6/tile-view.js"></script>
+    <link href="libs/animate.css-3.7.2/animate.xaringan.css" rel="stylesheet" />
+    <link href="libs/tachyons-4.12.0/tachyons.min.css" rel="stylesheet" />
+    <link href="libs/panelset-0.2.6/panelset.css" rel="stylesheet" />
+    <script src="libs/panelset-0.2.6/panelset.js"></script>
+    <script src="libs/fabric-4.3.1/fabric.min.js"></script>
+    <link href="libs/xaringanExtra-scribble-0.0.1/scribble.css" rel="stylesheet" />
+    <script src="libs/xaringanExtra-scribble-0.0.1/scribble.js"></script>
+    <script>document.addEventListener('DOMContentLoaded', function() { window.xeScribble = new Scribble({"pen_color":["#FF0000"],"pen_size":3,"eraser_size":30,"palette":[]}) })</script>
+    <script src="libs/xaringanExtra-webcam-0.0.1/webcam.js"></script>
+    <script id="xaringanExtra-webcam-options" type="application/json">{"width":"200","height":"200","margin":"1em"}</script>
+    <script src="libs/mark.js-8.11.1/mark.min.js"></script>
+    <link href="libs/xaringanExtra-search-0.0.1/search.css" rel="stylesheet" />
+    <script src="libs/xaringanExtra-search-0.0.1/search.js"></script>
+    <script>window.addEventListener('load', function() { window.xeSearch = new RemarkSearch({"position":"bottom-left","caseSensitive":false,"showIcon":true,"autoSearch":true}) })</script>
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+.title[
+# Aljabar Linier Matriks
+]
+.subtitle[
+## Pertemuan 05 <br> Matriks Echelon dan Pangkat Matriks
+]
+.author[
+### oleh Riana Hadiana
+]
+.institute[
+### Universitas Serang Raya
+]
+
+---
+
+
+
+
+
+
+
+
+<div>
+<style type="text/css">.xaringan-extra-logo {
+width: 110px;
+height: 128px;
+z-index: 0;
+background-image: url(Unsera.png);
+background-size: contain;
+background-repeat: no-repeat;
+position: absolute;
+top:1em;right:1em;
+}
+</style>
+<script>(function () {
+  let tries = 0
+  function addLogo () {
+    if (typeof slideshow === 'undefined') {
+      tries += 1
+      if (tries < 10) {
+        setTimeout(addLogo, 100)
+      }
+    } else {
+      document.querySelectorAll('.remark-slide-content:not(.title-slide):not(.inverse):not(.hide_logo)')
+        .forEach(function (slide) {
+          const logo = document.createElement('div')
+          logo.classList = 'xaringan-extra-logo'
+          logo.href = null
+          slide.appendChild(logo)
+        })
+    }
+  }
+  document.addEventListener('DOMContentLoaded', addLogo)
+})()</script>
+</div>
+
+
+
+
+
+.pull-left[
+
+# .purple[**Outline**]
+
+- ## Matriks Echelon &lt;br&gt;
+- ## Pangkat Matriks &lt;br&gt;
+- ## Matriks Kebalikan Umum 
+
+
+]
+
+.pull-right[
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
+![](alin.png)
+]
+
+---
+
+class: center, middle, inverse
+
+# .red[**Matriks Echelon**]
+
+
+---
+
+.pull.center[
+### **Matriks Echelon**]
+
+### Diketahui matriks `\(\textbf{A}_{n\times n}\)` dengan ciri-ciri berikut:
+- ### Sebanyak `\(r\)` buah baris pertama berisi unsur-unsur tak nol, sedangkan `\((m-r)\)` baris sisanya (di bawahnya) hanya berisi bilangan nol
+- ### Baris dengan unsur tak nol harus diawali dengan 1 (*leading* 1)
+- ### *Leading* 1 suatu baris harus di sebelah kanan *leading* 1 dari baris sebelumnya
+- ### *Leading* 1 pada kolom ke- `\(j\)` adalah satu-satunya unsur tak nol pada kolom ke- `\(j\)` tersebut
+
+### Jika memenuhi sifat 1-3, maka 𝑨 disebut sebagai .red[**matriks echelon baris**]. &lt;br&gt;Jika memenuhi sifat 1-4, maka 𝑨 disebut sebagai .red[**matriks echelon baris tereduksi**].
+
+
+---
+
+.pull.center[
+### **Matriks Echelon**]
+
+### `\(\textbf{A}=\begin{bmatrix} 1&amp;5&amp;1 \\ 0&amp;1&amp;2 \\ 0&amp;0&amp;1 \end{bmatrix} \quad \textbf{B}=\begin{bmatrix} 1&amp;0&amp;1 \\ 0&amp;1&amp;2 \\ 0&amp;0&amp;1 \end{bmatrix} \quad \textbf{C}=\begin{bmatrix} 1&amp;2&amp;0&amp;1 \\ 0&amp;1&amp;2&amp;2 \\ 0&amp;0&amp;0&amp;1 \end{bmatrix}\)`
+
+### `\(\textbf{D}=\begin{bmatrix} 1&amp;3&amp;4 \\ 0&amp;0&amp;0 \\ 0&amp;1&amp;6 \end{bmatrix} \quad \textbf{B}=\begin{bmatrix} 1&amp;4&amp;2 \\ 0&amp;1&amp;2 \\ 0&amp;0&amp;2 \end{bmatrix} \quad \textbf{F}=\begin{bmatrix} 1&amp;0&amp;0&amp;1 \\ 0&amp;1&amp;0&amp;2 \\ 0&amp;0&amp;1&amp;1 \end{bmatrix}\)`
+
+---
+
+.pull.center[
+### **Matriks Echelon**]
+
+&lt;br&gt;&lt;br&gt;
+### `$$\textbf{G}=\begin{bmatrix} 1&amp;0&amp;0&amp;0 \\ 0&amp;1&amp;2&amp;0 \\ 0&amp;0&amp;0&amp;1 \\ 0&amp;0&amp;0&amp;0 \end{bmatrix} \quad \textbf{H}=\begin{bmatrix} 1&amp;0&amp;0&amp;0 \\ 0&amp;0&amp;0&amp;0 \\ 0&amp;0&amp;0&amp;0 \\ 0&amp;0&amp;0&amp;0 \end{bmatrix}$$`
+
+---
+
+.pull.center[
+### **Matriks Echelon**]
+
+- ### Matriks echelon baris dan matriks echelon baris tereduksi bisa didapat menggunakan Operasi Baris Elementer.
+- ### Setiap matriks `\(\textbf{A}\)` hanya mempunyai 1 (satu) buah bentuk matriks echelon baris tereduksi.
+- ### Jika `\(\textbf{A}\)` adalah persegi dengan `\(\text{det}(\textbf{A})\ne 0\)`, maka matriks echelon baris tereduksi dari matriks `\(\textbf{A}\)` adalah matriks identitas.
+
+
+---
+
+.pull.center[
+### **Matriks Echelon**]
+
+### Ubahlah matriks berikut menjadi matriks echelon baris tereduksi dengan Operasi Baris Elementer.
+
+#### `\(\textbf{A}=\begin{bmatrix} 2&amp;0&amp;-4&amp;6 \\ 1&amp;1&amp;-2&amp;4 \\ 4&amp;2&amp;0&amp;2 \end{bmatrix} \xrightarrow{B_{12}} \begin{bmatrix} 1&amp;1&amp;-2&amp;4 \\ \dots&amp;\dots&amp;\dots&amp;\dots \\ \dots&amp;\dots&amp;\dots&amp;\dots \end{bmatrix} \xrightarrow[B_{31(-4)}]{B_{21(-2)}} \begin{bmatrix} 1&amp;1&amp;-2&amp;4 \\ \dots&amp;\dots&amp;\dots&amp;\dots \\ \dots&amp;\dots&amp;\dots&amp;\dots \end{bmatrix} \xrightarrow{B_{32(-1)}}\)`
+
+#### `\(\begin{bmatrix} 1&amp;1&amp;-2&amp;4 \\ \dots&amp;\dots&amp;\dots&amp;\dots \\ \dots&amp;\dots&amp;\dots&amp;\dots \end{bmatrix} \xrightarrow{B_{2\left(\frac{1}{2}\right)}} \begin{bmatrix} 1&amp;1&amp;-2&amp;4 \\ \dots&amp;\dots&amp;\dots&amp;\dots \\ \dots&amp;\dots&amp;\dots&amp;\dots \end{bmatrix} \xrightarrow{B_{3\left(\frac{1}{8}\right)}} \begin{bmatrix} 1&amp;1&amp;-2&amp;4 \\ \dots&amp;\dots&amp;\dots&amp;\dots \\ \dots&amp;\dots&amp;\dots&amp;\dots \end{bmatrix} \xrightarrow{B_{13(2)}}\)`
+
+#### `\(\begin{bmatrix} \dots&amp;\dots&amp;\dots&amp;\dots \\ \dots&amp;\dots&amp;\dots&amp;\dots \\ \dots&amp;\dots&amp;\dots&amp;\dots \end{bmatrix} \xrightarrow{B_{12(-1)}} \begin{bmatrix} \dots&amp;\dots&amp;\dots&amp;\dots \\ \dots&amp;\dots&amp;\dots&amp;\dots \\ \dots&amp;\dots&amp;\dots&amp;\dots \end{bmatrix}\)`
+
+
+---
+
+.pull.center[
+### **Matriks Echelon**]
+
+### Ubahlah matriks berikut menjadi matriks echelon baris tereduksi dengan Operasi Baris Elementer.
+
+#### `\(\textbf{A}=\begin{bmatrix} 2&amp;0&amp;-4&amp;6 \\ 1&amp;1&amp;-2&amp;4 \\ 4&amp;2&amp;0&amp;2 \end{bmatrix} \xrightarrow{B_{12}} \begin{bmatrix} 1&amp;1&amp;-2&amp;4 \\ 2&amp;0&amp;-4&amp;6 \\ 4&amp;2&amp;0&amp;2 \end{bmatrix} \xrightarrow[B_{31(-4)}]{B_{21(-2)}} \begin{bmatrix} 1&amp;1&amp;-2&amp;4 \\ 0&amp;-2&amp;0&amp;-2 \\ 0&amp;-2&amp;8&amp;-14 \end{bmatrix} \xrightarrow{B_{32(-1)}}\)`
+
+#### `\(\begin{bmatrix} 1&amp;1&amp;-2&amp;4 \\ 0&amp;-2&amp;0&amp;-2 \\ 0&amp;0&amp;8&amp;-12 \end{bmatrix} \xrightarrow{B_{2\left(\frac{1}{2}\right)}} \begin{bmatrix} 1&amp;1&amp;-2&amp;4 \\ 0&amp;1&amp;0&amp;1 \\ 0&amp;0&amp;8&amp;-12 \end{bmatrix} \xrightarrow{B_{3\left(\frac{1}{8}\right)}} \begin{bmatrix} 1&amp;1&amp;-2&amp;4 \\ 0&amp;1&amp;0&amp;1 \\ 0&amp;0&amp;1&amp;-\frac{12}{8} \end{bmatrix} \xrightarrow{B_{13(2)}}\)`
+
+#### `\(\begin{bmatrix} 1&amp;1&amp;0&amp;1 \\ 0&amp;1&amp;0&amp;1 \\ 0&amp;0&amp;1&amp;-\frac{12}{8} \end{bmatrix} \xrightarrow{B_{12(-1)}} \begin{bmatrix} 1&amp;0&amp;0&amp;0 \\ 0&amp;1&amp;0&amp;1 \\ 0&amp;0&amp;1&amp;-\frac{12}{8} \end{bmatrix}\)`
+
+---
+
+.pull.center[
+### **Matriks Echelon**]
+
+### Ubahlah matriks berikut menjadi matriks echelon baris tereduksi dengan Operasi Baris Elementer.
+
+### `\(\textbf{B}=\begin{bmatrix} 2&amp;-1&amp;1&amp;6 \\ 1&amp;-3&amp;1&amp;-2 \\ 1&amp;2&amp;-1&amp;3 \end{bmatrix}\)`
+
+---
+
+.pull.center[
+### **Pangkat Matriks (Matrix Rank)**
+]
+
+### Pangkat dari sebuah matriks `\(\textbf{A}_{m\times n}\)`, dilambangkan `\(r(\textbf{A})\)`, adalah ordo anak matriks persegi `\(\textbf{A}\)` yang terbesar dan deeterminannya `\(\ne 0\)`.
+
+### `\(\textbf{A}=\begin{bmatrix} 1&amp;5&amp;1 \\ 0&amp;1&amp;2 \\ 0&amp;0&amp;1 \end{bmatrix} \Rightarrow \text{det}(\textbf{A})=1\ne 0 \Rightarrow \text{Pangkat }\textbf{A}=r(\textbf{A})=3\)`
+
+### `\(\textbf{B}=\begin{bmatrix} 1&amp;5&amp;1 \\ 0&amp;0&amp;2 \\ 0&amp;0&amp;1 \end{bmatrix} \Rightarrow \text{det}(\textbf{B})=0 \Rightarrow \text{Pangkat }\textbf{B}=r(\textbf{B})\ne3\)`
+
+---
+
+.pull.center[
+### **Pangkat Matriks (Matrix Rank)**
+]
+
+### Pangkat dari sebuah matriks `\(\textbf{A}_{m\times n}\)`, dilambangkan `\(r(\textbf{A})\)`, adalah ordo anak matriks persegi `\(\textbf{A}\)` yang terbesar dan deeterminannya `\(\ne 0\)`.
+
+### `\(\textbf{B}=\begin{bmatrix} 1&amp;\color{red}{\textbf{5}}&amp;\color{red}{\textbf{1}} \\ 0&amp;\color{red}{\textbf{0}}&amp;\color{red}{\textbf{2}} \\ 0&amp;0&amp;1 \end{bmatrix} \Rightarrow \text{det}\begin{bmatrix} \color{red}{\textbf{5}}&amp;\color{red}{\textbf{1}} \\ \color{red}{\textbf{0}}&amp;\color{red}{\textbf{2}} \end{bmatrix}=10 \Rightarrow \text{Pangkat }\textbf{B}=r(\textbf{B})=\color{red}{\mathbf{2}}\)`
+
+---
+
+.pull.center[
+### **Pangkat Matriks (Matrix Rank)**]
+
+- ### Untuk sebuah matriks `\(\textbf{A}_{m\times n}\)`, maka `\(r(\textbf{A})\le\text{min}(m,n)\)`, atau dengan kata lain pangkat dari matriks `\(\textbf{A}\)` tidak akan melebihi banyak baris dan kolomnya.
+
+- ### Untuk `\(\textbf{A}_{n\times n}\)` dengan `\(r(\textbf{A})=n\)`, maka `\(\textbf{A}\)` disebut sebagai .red[**matriks berpangkat penuh**] (a full-rank matrix)
+
+- ### Untuk `\(\textbf{A}_{m\times n}\)` dengan `\(m&lt;n\)` dan `\(r(\textbf{A})=m\)`, maka `\(\textbf{A}\)` disebut sebagai .red[**matriks berpangkat baris penuh**] (a full-row-rank matrix)
+
+- ### Untuk `\(\textbf{A}_{m\times n}\)` dengan `\(m&gt;n\)` dan `\(r(\textbf{A})=n\)`, maka `\(\textbf{A}\)` disebut sebagai .red[**matriks berpangkat kolom penuh**] (a full-column-rank matrix)
+- ### Operasi baris/kolom elementer tidak mengubah pangkat dari sebuah matriks
+
+---
+
+.pull.center[
+### **Pangkat Matriks (Matrix Rank)**]
+
+### Tentukan pangkat matriks berikut 
+
+### `\(\textbf{A}=\begin{bmatrix} 2&amp;-1&amp;6 \\ 1&amp;1&amp;-1 \end{bmatrix} \qquad \textbf{B}=\begin{bmatrix} 1&amp;-2&amp;0 \\ -2&amp;4&amp;0 \\ 4&amp;-8&amp;0 \end{bmatrix}\)`
+
+---
+
+class: center, middle, inverse
+
+# .red[**Matriks Kebalikan Umum (MKU)**]
+
+---
+
+.pull.center[
+# **Matriks Kebalikan Umum (MKU)**]
+
+- ### Matriks kebalikan umum bagi `\(\textbf{A}_{m\times n}\)` dilambangkan `\(\textbf{G}_{n\times n}\)`  adalah matriks yang memenuhi `\(\textbf{AGA}=\textbf{A}\)`
+
+- ### Notasi lain dari `\(\textbf{G}\)` adalah `\(\textbf{A}^-\)` sehingga `\(\textbf{AA}^-\textbf{A}=\textbf{A}\)` 
+
+- ### Jika `\(\textbf{A}_{n\times n}\)` merupakan matriks non-singular, MKU bagi `\(\textbf{A}\)` adalah `\(\textbf{A}^{-1}\)`
+
+- ### MKU bagi `\(\textbf{A}\)` tidak unik kecuali jika `\(\textbf{A}\)` adalah matriks persegi non-singular 
+
+
+---
+
+.pull.center[
+### **Algoritma Menentukan MKU**]
+
+1. #### Tentukan pangkat dari matriks `\(\textbf{A}\)`, misalnya `\(k\)`
+1. #### Cari anak matriks persegi berukuran `\(k\times k\)` yang non-singular, sebut saja `\(\textbf{W}\)`
+1. #### Cari invers dari `\(\textbf{W}\)`, yaitu `\(\textbf{W}^{-1}\)`
+1. #### Transpose matriks `\(\textbf{W}^{-1}\)`, yaitu `\((\textbf{W}^{-1})^T\)`
+1. #### Ganti unsur di `\(\textbf{A}\)` dengan unsur `\((\textbf{W}^{-1})^T\)` pada posisi yang sama dengan posisi anak matriks yang digunakan
+1. #### Ganti unsur `\(\textbf{A}\)` yang lain dengan 0 (nol)
+1. #### Transpose matriks tersebut adalah matriks `\(\textbf{G}\)` (matriks kebalikan umum)
+
+
+---
+
+.pull.center[
+### **Algoritma Menentukan MKU**]
+
+.pull-left[
+
+1. #### Tentukan pangkat dari matriks `\(\textbf{A}\)`, misalnya `\(k\)`
+1. #### Cari anak matriks persegi berukuran `\(k\times k\)` yang non-singular, sebut saja `\(\textbf{W}\)`
+1. #### Cari invers dari `\(\textbf{W}\)`, yaitu `\(\textbf{W}^{-1}\)`
+1. #### Transpose matriks `\(\textbf{W}^{-1}\)`, yaitu `\((\textbf{W}^{-1})^T\)`
+1. #### Ganti unsur di `\(\textbf{A}\)` dengan unsur `\((\textbf{W}^{-1})^T\)` pada posisi yang sama dengan posisi anak matriks yang digunakan
+1. #### Ganti unsur `\(\textbf{A}\)` yang lain dengan 0 (nol)
+1. #### Transpose matriks tersebut adalah matriks `\(\textbf{G}\)` (matriks kebalikan umum)
+
+]
+
+.pull-right[
+
+remun cair
+
+
+]
+---
+
+.pull.center[
+# **Matriks Baris Elementer**]
+
+### Matriks baris elementer adalah matriks yang dihasilkan dari operasi baris elementer terhadap matriks identitas
+
+### `\(\textbf{M}_{12}=B_{12}(\textbf{I})=B_{12}\left( \begin{bmatrix} 1&amp;0 \\0&amp;1 \end{bmatrix} \right)=\begin{bmatrix} 0&amp;1 \\ 1&amp;0 \end{bmatrix}\)`
+
+### `\(\textbf{M}_{12}=B_{12}(\textbf{I})=B_{12}\left( \begin{bmatrix} 1&amp;0&amp;0 \\0&amp;1&amp;0 \\ 0&amp;0&amp;1 \end{bmatrix} \right)=\begin{bmatrix} 0&amp;1&amp;0 \\ 1&amp;0&amp;0 \\ 0&amp;0&amp;1 \end{bmatrix}\)`
+
+---
+
+.pull.center[
+# **Matriks Baris Elementer**]
+
+### Matriks baris elementer adalah matriks yang dihasilkan dari operasi baris elementer terhadap matriks identitas
+
+### `\(\textbf{M}_{1(2)}=B_{1(2)}(\textbf{I})=B_{1(2)}\left( \begin{bmatrix} 1&amp;0 \\0&amp;1 \end{bmatrix} \right)=\begin{bmatrix} 2&amp;0 \\0&amp;1 \end{bmatrix}\)`
+
+### `\(\textbf{M}_{1(2)}=B_{1(2)}(\textbf{I})=B_{1(2)}\left( \begin{bmatrix} 1&amp;0&amp;0 \\0&amp;1&amp;0 \\ 0&amp;0&amp;1 \end{bmatrix} \right)=\begin{bmatrix} 2&amp;0&amp;0 \\0&amp;1&amp;0 \\ 0&amp;0&amp;1 \end{bmatrix}\)`
+
+---
+
+.pull.center[
+# **Matriks Baris Elementer**]
+
+### Matriks baris elementer adalah matriks yang dihasilkan dari operasi baris elementer terhadap matriks identitas
+
+### `\(\textbf{M}_{12(2)}=B_{12(2)}(\textbf{I})=B_{12(2)}\left( \begin{bmatrix} 1&amp;0 \\0&amp;1 \end{bmatrix} \right)=\begin{bmatrix} 1&amp;2 \\0&amp;1 \end{bmatrix}\)`
+
+### `\(\textbf{M}_{12(2)}=B_{12(2)}(\textbf{I})=B_{12(2)}\left( \begin{bmatrix} 1&amp;0&amp;0 \\0&amp;1&amp;0 \\ 0&amp;0&amp;1 \end{bmatrix} \right)=\begin{bmatrix} 1&amp;2&amp;0 \\0&amp;1&amp;0 \\ 0&amp;0&amp;1 \end{bmatrix}\)`
+
+---
+
+.pull.center[
+### **Determinan Matriks Baris Elementer**]
+
+### `\(\textbf{M}_{12}=B_{12}(\textbf{I})=\begin{bmatrix} 0&amp;1&amp;0 \\ 1&amp;0&amp;0 \\ 0&amp;0&amp;1 \end{bmatrix} \begin{matrix} \quad \text{det}(\textbf{M}_{12})=-1 \\ \quad \color{red}{\text{det}(\textbf{M}_{ij})=-1} \end{matrix}\)`
+
+### `\(\textbf{M}_{1(2)}=B_{1(2)}(\textbf{I})=\begin{bmatrix} 2&amp;0&amp;0 \\0&amp;1&amp;0 \\ 0&amp;0&amp;1 \end{bmatrix} \begin{matrix} \quad \text{det}(\textbf{M}_{1(2)})=2 \\ \quad \color{red}{\text{det}(\textbf{M}_{i(j)})=k} \end{matrix}\)`
+
+### `\(\textbf{M}_{12(2)}=B_{12(2)}(\textbf{I})=\begin{bmatrix} 1&amp;2&amp;0 \\0&amp;1&amp;0 \\ 0&amp;0&amp;1 \end{bmatrix} \begin{matrix} \quad \text{det}(\textbf{M}_{12(2)})=1 \\ \quad \color{red}{\text{det}(\textbf{M}_{ij(k)})=1} \end{matrix}\)`
+
+---
+
+.pull.center[
+### **Operasi Baris Elementer**]
+
+### Melakukan operasi baris elementer terhadap sebuah matriks berukuran `\(n\times m\)` sama dengan melakukan perkalian Matriks Baris Elementer berukuran `\(n\times n\)` dengan matriks yang bersangkutan 
+
+### `\(\textbf{A}=\begin{bmatrix} 1&amp;2&amp;1 \\ 3&amp;0&amp;2 \\ 2&amp;3&amp;1 \end{bmatrix} \xrightarrow{B_{12}} \begin{bmatrix} 3&amp;0&amp;2 \\ 1&amp;2&amp;1 \\ 2&amp;3&amp;1 \end{bmatrix}\)`
+### `\(\textbf{M}_{12}\textbf{A}=\begin{bmatrix} 0&amp;1&amp;0 \\ 1&amp;0&amp;0 \\ 0&amp;0&amp;1 \end{bmatrix}\begin{bmatrix} 1&amp;2&amp;1 \\ 3&amp;0&amp;2 \\ 2&amp;3&amp;1 \end{bmatrix} \xrightarrow{B_{12}} \begin{bmatrix} 3&amp;0&amp;2 \\ 1&amp;2&amp;1 \\ 2&amp;3&amp;1 \end{bmatrix}\)`
+
+---
+
+.pull.center[
+### **Operasi Baris Elementer**]
+
+### Melakukan operasi baris elementer terhadap sebuah matriks berukuran `\(n\times m\)` sama dengan melakukan perkalian Matriks Baris Elementer berukuran `\(n\times n\)` dengan matriks yang bersangkutan 
+
+### `\(\textbf{A}=\begin{bmatrix} 1&amp;2&amp;1 \\ 3&amp;0&amp;2 \\ 2&amp;3&amp;1 \end{bmatrix} \xrightarrow{B_{1(2)}} \begin{bmatrix} 2&amp;4&amp;2 \\ 3&amp;0&amp;2 \\ 2&amp;3&amp;1 \end{bmatrix}\)`
+### `\(\textbf{M}_{1(2)}\textbf{A}=\begin{bmatrix} 2&amp;0&amp;0 \\ 0&amp;1&amp;0 \\ 0&amp;0&amp;1 \end{bmatrix}\begin{bmatrix} 1&amp;2&amp;1 \\ 3&amp;0&amp;2 \\ 2&amp;3&amp;1 \end{bmatrix} \xrightarrow{B_{1(2)}} \begin{bmatrix} 2&amp;4&amp;2 \\ 3&amp;0&amp;2 \\ 2&amp;3&amp;1 \end{bmatrix}\)`
+
+---
+
+.pull.center[
+### **Operasi Baris Elementer**]
+
+### Melakukan operasi baris elementer terhadap sebuah matriks berukuran `\(n\times m\)` sama dengan melakukan perkalian Matriks Baris Elementer berukuran `\(n\times n\)` dengan matriks yang bersangkutan 
+
+### `\(\textbf{A}=\begin{bmatrix} 1&amp;2&amp;1 \\ 3&amp;0&amp;2 \\ 2&amp;3&amp;1 \end{bmatrix} \xrightarrow{B_{12(2)}} \begin{bmatrix} 7&amp;2&amp;5 \\ 3&amp;0&amp;2 \\ 2&amp;3&amp;1 \end{bmatrix}\)`
+### `\(\textbf{M}_{12(2)}\textbf{A}=\begin{bmatrix} 1&amp;2&amp;0 \\ 0&amp;1&amp;0 \\ 0&amp;0&amp;1 \end{bmatrix}\begin{bmatrix} 1&amp;2&amp;1 \\ 3&amp;0&amp;2 \\ 2&amp;3&amp;1 \end{bmatrix} \xrightarrow{B_{12(2)}} \begin{bmatrix} 7&amp;2&amp;5 \\ 3&amp;0&amp;2 \\ 2&amp;3&amp;1 \end{bmatrix}\)`
+
+---
+
+.pull.center[
+### **Determinan Hasil Operasi Baris Elementer**]
+
+### Jika `\(\textbf{A}\)` adalah matriks persegi, maka:
+- ### `\(\text{det}\left(B_{ij}(\textbf{A})\right)=-\text{det}(\textbf{A})\)`
+- ### `\(\text{det}\left(B_{i(k)}(\textbf{A})\right)=k\text{det}(\textbf{A})\)`
+- ### `\(\text{det}\left(B_{ij(k)}(\textbf{A})\right)=\text{det}(\textbf{A})\)`
+- ### Jika `\(\text{det}(\textbf{A})=0\)`, maka operasi baris terhadap `\(\textbf{A}\)` akan menghasilkan matriks yang determinannya juga 0 (nol). Sebaliknya jika `\(\text{det}(\textbf{A})\ne0\)`, maka operasi baris terhadap `\(\textbf{A}\)` akan menghasilkan matriks yang determinannya juga 0 (nol).
+
+---
+
+.pull.center[
+# **Invers Matriks dengan Operasi Baris Elementer**]
+
+### Jika `\(\textbf{A}\)` adalah matriks persegi dan memiliki invers, maka invers dari matriks `\(\textbf{A}\)` bisa dicari menggunakan Operasi Baris Elementer.
+
+# `$$(\textbf{A}|\textbf{I}) \xrightarrow{\color{green}{\textbf{OBE}}} (\textbf{I}|\textbf{A}^{-1})$$`
+
+---
+
+.pull.center[
+# **Invers Matriks dengan Operasi Baris Elementer**]
+
+### Tentukan invers matriks `\(\textbf{A}=\begin{bmatrix} 1&amp;2 \\ 2&amp;3 \end{bmatrix}\)` menggunakan Operasi Baris Elementer.
+
+### `\(\left[\begin{array}{cc|cc} 1&amp;2&amp;1&amp;0 \\ 2&amp;3&amp;0&amp;1 \end{array}\right] \xrightarrow{B_{21(-2)}} \left[\begin{array}{cc|cc} 1&amp;2&amp;1&amp;0 \\ 0&amp;-1&amp;-2&amp;1 \end{array}\right] \xrightarrow{B_{2(-1)}}\)`
+
+### `\(\left[\begin{array}{cc|cc} 1&amp;2&amp;1&amp;0 \\ 0&amp;1&amp;2&amp;-1 \end{array}\right] \xrightarrow{B_{12(-2)}} \left[ \begin{array}{cc|cc} 1&amp;0&amp;-3&amp;2 \\ 0&amp;1&amp;2&amp;-1 \end{array} \right]\)`
+
+---
+
+.pull.center[
+# **Latihan**]
+
+### 1. Tentukan invers matriks-matriks berikut.
+
+### `\(\textbf{A}=\begin{bmatrix} 3&amp;-1 \\ -5&amp;2 \end{bmatrix} \hspace{2cm} \textbf{B}=\begin{bmatrix} -5&amp;5&amp;1 \\ 5&amp;-6&amp;2 \\ 1&amp;2&amp;-1 \end{bmatrix}\)`
+
+---
+
+.pull.center[
+# **Latihan**]
+
+### 2. Lengkapilah Operasi Baris Elementer berikut.
+
+### `\(\textbf{A}=\begin{bmatrix} 1&amp;2&amp;1 \\ 3&amp;0&amp;2 \\ 2&amp;3&amp;1 \end{bmatrix} \xrightarrow{B_{21(-3)}} \begin{bmatrix} 1&amp;2&amp;1 \\ \dots&amp;\dots&amp;\dots \\ 2&amp;3&amp;1 \end{bmatrix} \xrightarrow{B_{31(-2)}} \begin{bmatrix} \end{bmatrix} \xrightarrow{B_{23}}\)`
+
+### `\(\begin{bmatrix} \end{bmatrix} \xrightarrow{B_{2(-1)}} \begin{bmatrix} \end{bmatrix} \xrightarrow{B_{32(6)}} \begin{bmatrix} \end{bmatrix} \xrightarrow{B_{3(\frac{1}{5})}} \begin{bmatrix} \end{bmatrix} \xrightarrow{B_{23(-1)}} \begin{bmatrix} \end{bmatrix} \xrightarrow{B_{12(-2)}}\begin{bmatrix} \end{bmatrix} \xrightarrow{B_{13(-1)}} \begin{bmatrix} \end{bmatrix}\)`
+
+
+---
+
+.pull.center[
+# **Latihan**]
+
+### 3. Tentukan invers matriks-matriks berikut dengan operasi baris elementer.
+
+### `\(\textbf{A}=\begin{bmatrix} 2&amp;5 \\ 1&amp;2 \end{bmatrix} \hspace{2cm} \textbf{B}=\begin{bmatrix} 1&amp;2&amp;1 \\ 3&amp;0&amp;2 \\ 2&amp;3&amp;1 \end{bmatrix}\)`
+
+---
+
+class: inverse, middle, center
+
+# Thank you
+# See you next week!
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false,
+"ratio": "16:9"
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
