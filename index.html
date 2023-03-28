@@ -4,7 +4,7 @@
     <title>Aljabar Linier Matriks</title>
     <meta charset="utf-8" />
     <meta name="author" content="oleh Riana Hadiana" />
-    <script src="libs/header-attrs-2.20/header-attrs.js"></script>
+    <script src="libs/header-attrs-2.21/header-attrs.js"></script>
     <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
     <link href="libs/remark-css-0.0.1/default-fonts.css" rel="stylesheet" />
     <link href="libs/tile-view-0.2.6/tile-view.css" rel="stylesheet" />
@@ -288,144 +288,25 @@ class: center, middle, inverse
 
 .pull-right[
 
-remun cair
+`\(\textbf{A}=\begin{bmatrix} 4&amp;\color{red}{1}&amp;\color{red}2 \\ 1&amp;\color{red}1&amp;\color{red}5 \\ 3&amp;1&amp;3 \end{bmatrix} \quad \begin{matrix} \text{det}(\textbf{A})=0 \\ r(\textbf{A})\ne 3 \end{matrix}\)`
 
+`\(\textbf{W}=\begin{bmatrix} 1&amp;2 \\ 1&amp;5 \end{bmatrix}\rightarrow\text{det}(\textbf{W})=3\ne 0 \rightarrow r(\textbf{W})=2\)`
+
+`\(\textbf{W}^{-1}=\dfrac{1}{3}\begin{bmatrix} 5&amp;-2 \\ -1&amp;1 \end{bmatrix}\)`
+
+`\((\textbf{W}^{-1})^T=\dfrac{1}{3}\begin{bmatrix} 5&amp;-1 \\ -2&amp;1 \end{bmatrix}=\begin{bmatrix} 5/3&amp;-1/3 \\ -2/3&amp;1/3 \end{bmatrix}\)`
+
+`\(\begin{bmatrix} 0&amp;\color{red}{5/3}&amp;\color{red}{-1/3} \\ 0&amp;\color{red}{-2/3}&amp;\color{red}{1/3} \\ 0&amp;0&amp;0 \end{bmatrix}\xrightarrow{\text{transpose}}\textbf{G}=\begin{bmatrix} 0&amp;0&amp;0 \\ 5/3&amp;-2/3&amp;0 \\ -1/3&amp;1/3&amp;0  \end{bmatrix}\)`
 
 ]
 ---
 
 .pull.center[
-# **Matriks Baris Elementer**]
+## **Matriks Kebalikan Umum (MKU)**]
 
-### Matriks baris elementer adalah matriks yang dihasilkan dari operasi baris elementer terhadap matriks identitas
+### Tentukan MKU matriks `\(\textbf{A}\)` berikut jika `\(\textbf{W}=\begin{bmatrix} 4&amp;1 \\ 3&amp;1 \end{bmatrix}\)`.
 
-### `\(\textbf{M}_{12}=B_{12}(\textbf{I})=B_{12}\left( \begin{bmatrix} 1&amp;0 \\0&amp;1 \end{bmatrix} \right)=\begin{bmatrix} 0&amp;1 \\ 1&amp;0 \end{bmatrix}\)`
-
-### `\(\textbf{M}_{12}=B_{12}(\textbf{I})=B_{12}\left( \begin{bmatrix} 1&amp;0&amp;0 \\0&amp;1&amp;0 \\ 0&amp;0&amp;1 \end{bmatrix} \right)=\begin{bmatrix} 0&amp;1&amp;0 \\ 1&amp;0&amp;0 \\ 0&amp;0&amp;1 \end{bmatrix}\)`
-
----
-
-.pull.center[
-# **Matriks Baris Elementer**]
-
-### Matriks baris elementer adalah matriks yang dihasilkan dari operasi baris elementer terhadap matriks identitas
-
-### `\(\textbf{M}_{1(2)}=B_{1(2)}(\textbf{I})=B_{1(2)}\left( \begin{bmatrix} 1&amp;0 \\0&amp;1 \end{bmatrix} \right)=\begin{bmatrix} 2&amp;0 \\0&amp;1 \end{bmatrix}\)`
-
-### `\(\textbf{M}_{1(2)}=B_{1(2)}(\textbf{I})=B_{1(2)}\left( \begin{bmatrix} 1&amp;0&amp;0 \\0&amp;1&amp;0 \\ 0&amp;0&amp;1 \end{bmatrix} \right)=\begin{bmatrix} 2&amp;0&amp;0 \\0&amp;1&amp;0 \\ 0&amp;0&amp;1 \end{bmatrix}\)`
-
----
-
-.pull.center[
-# **Matriks Baris Elementer**]
-
-### Matriks baris elementer adalah matriks yang dihasilkan dari operasi baris elementer terhadap matriks identitas
-
-### `\(\textbf{M}_{12(2)}=B_{12(2)}(\textbf{I})=B_{12(2)}\left( \begin{bmatrix} 1&amp;0 \\0&amp;1 \end{bmatrix} \right)=\begin{bmatrix} 1&amp;2 \\0&amp;1 \end{bmatrix}\)`
-
-### `\(\textbf{M}_{12(2)}=B_{12(2)}(\textbf{I})=B_{12(2)}\left( \begin{bmatrix} 1&amp;0&amp;0 \\0&amp;1&amp;0 \\ 0&amp;0&amp;1 \end{bmatrix} \right)=\begin{bmatrix} 1&amp;2&amp;0 \\0&amp;1&amp;0 \\ 0&amp;0&amp;1 \end{bmatrix}\)`
-
----
-
-.pull.center[
-### **Determinan Matriks Baris Elementer**]
-
-### `\(\textbf{M}_{12}=B_{12}(\textbf{I})=\begin{bmatrix} 0&amp;1&amp;0 \\ 1&amp;0&amp;0 \\ 0&amp;0&amp;1 \end{bmatrix} \begin{matrix} \quad \text{det}(\textbf{M}_{12})=-1 \\ \quad \color{red}{\text{det}(\textbf{M}_{ij})=-1} \end{matrix}\)`
-
-### `\(\textbf{M}_{1(2)}=B_{1(2)}(\textbf{I})=\begin{bmatrix} 2&amp;0&amp;0 \\0&amp;1&amp;0 \\ 0&amp;0&amp;1 \end{bmatrix} \begin{matrix} \quad \text{det}(\textbf{M}_{1(2)})=2 \\ \quad \color{red}{\text{det}(\textbf{M}_{i(j)})=k} \end{matrix}\)`
-
-### `\(\textbf{M}_{12(2)}=B_{12(2)}(\textbf{I})=\begin{bmatrix} 1&amp;2&amp;0 \\0&amp;1&amp;0 \\ 0&amp;0&amp;1 \end{bmatrix} \begin{matrix} \quad \text{det}(\textbf{M}_{12(2)})=1 \\ \quad \color{red}{\text{det}(\textbf{M}_{ij(k)})=1} \end{matrix}\)`
-
----
-
-.pull.center[
-### **Operasi Baris Elementer**]
-
-### Melakukan operasi baris elementer terhadap sebuah matriks berukuran `\(n\times m\)` sama dengan melakukan perkalian Matriks Baris Elementer berukuran `\(n\times n\)` dengan matriks yang bersangkutan 
-
-### `\(\textbf{A}=\begin{bmatrix} 1&amp;2&amp;1 \\ 3&amp;0&amp;2 \\ 2&amp;3&amp;1 \end{bmatrix} \xrightarrow{B_{12}} \begin{bmatrix} 3&amp;0&amp;2 \\ 1&amp;2&amp;1 \\ 2&amp;3&amp;1 \end{bmatrix}\)`
-### `\(\textbf{M}_{12}\textbf{A}=\begin{bmatrix} 0&amp;1&amp;0 \\ 1&amp;0&amp;0 \\ 0&amp;0&amp;1 \end{bmatrix}\begin{bmatrix} 1&amp;2&amp;1 \\ 3&amp;0&amp;2 \\ 2&amp;3&amp;1 \end{bmatrix} \xrightarrow{B_{12}} \begin{bmatrix} 3&amp;0&amp;2 \\ 1&amp;2&amp;1 \\ 2&amp;3&amp;1 \end{bmatrix}\)`
-
----
-
-.pull.center[
-### **Operasi Baris Elementer**]
-
-### Melakukan operasi baris elementer terhadap sebuah matriks berukuran `\(n\times m\)` sama dengan melakukan perkalian Matriks Baris Elementer berukuran `\(n\times n\)` dengan matriks yang bersangkutan 
-
-### `\(\textbf{A}=\begin{bmatrix} 1&amp;2&amp;1 \\ 3&amp;0&amp;2 \\ 2&amp;3&amp;1 \end{bmatrix} \xrightarrow{B_{1(2)}} \begin{bmatrix} 2&amp;4&amp;2 \\ 3&amp;0&amp;2 \\ 2&amp;3&amp;1 \end{bmatrix}\)`
-### `\(\textbf{M}_{1(2)}\textbf{A}=\begin{bmatrix} 2&amp;0&amp;0 \\ 0&amp;1&amp;0 \\ 0&amp;0&amp;1 \end{bmatrix}\begin{bmatrix} 1&amp;2&amp;1 \\ 3&amp;0&amp;2 \\ 2&amp;3&amp;1 \end{bmatrix} \xrightarrow{B_{1(2)}} \begin{bmatrix} 2&amp;4&amp;2 \\ 3&amp;0&amp;2 \\ 2&amp;3&amp;1 \end{bmatrix}\)`
-
----
-
-.pull.center[
-### **Operasi Baris Elementer**]
-
-### Melakukan operasi baris elementer terhadap sebuah matriks berukuran `\(n\times m\)` sama dengan melakukan perkalian Matriks Baris Elementer berukuran `\(n\times n\)` dengan matriks yang bersangkutan 
-
-### `\(\textbf{A}=\begin{bmatrix} 1&amp;2&amp;1 \\ 3&amp;0&amp;2 \\ 2&amp;3&amp;1 \end{bmatrix} \xrightarrow{B_{12(2)}} \begin{bmatrix} 7&amp;2&amp;5 \\ 3&amp;0&amp;2 \\ 2&amp;3&amp;1 \end{bmatrix}\)`
-### `\(\textbf{M}_{12(2)}\textbf{A}=\begin{bmatrix} 1&amp;2&amp;0 \\ 0&amp;1&amp;0 \\ 0&amp;0&amp;1 \end{bmatrix}\begin{bmatrix} 1&amp;2&amp;1 \\ 3&amp;0&amp;2 \\ 2&amp;3&amp;1 \end{bmatrix} \xrightarrow{B_{12(2)}} \begin{bmatrix} 7&amp;2&amp;5 \\ 3&amp;0&amp;2 \\ 2&amp;3&amp;1 \end{bmatrix}\)`
-
----
-
-.pull.center[
-### **Determinan Hasil Operasi Baris Elementer**]
-
-### Jika `\(\textbf{A}\)` adalah matriks persegi, maka:
-- ### `\(\text{det}\left(B_{ij}(\textbf{A})\right)=-\text{det}(\textbf{A})\)`
-- ### `\(\text{det}\left(B_{i(k)}(\textbf{A})\right)=k\text{det}(\textbf{A})\)`
-- ### `\(\text{det}\left(B_{ij(k)}(\textbf{A})\right)=\text{det}(\textbf{A})\)`
-- ### Jika `\(\text{det}(\textbf{A})=0\)`, maka operasi baris terhadap `\(\textbf{A}\)` akan menghasilkan matriks yang determinannya juga 0 (nol). Sebaliknya jika `\(\text{det}(\textbf{A})\ne0\)`, maka operasi baris terhadap `\(\textbf{A}\)` akan menghasilkan matriks yang determinannya juga 0 (nol).
-
----
-
-.pull.center[
-# **Invers Matriks dengan Operasi Baris Elementer**]
-
-### Jika `\(\textbf{A}\)` adalah matriks persegi dan memiliki invers, maka invers dari matriks `\(\textbf{A}\)` bisa dicari menggunakan Operasi Baris Elementer.
-
-# `$$(\textbf{A}|\textbf{I}) \xrightarrow{\color{green}{\textbf{OBE}}} (\textbf{I}|\textbf{A}^{-1})$$`
-
----
-
-.pull.center[
-# **Invers Matriks dengan Operasi Baris Elementer**]
-
-### Tentukan invers matriks `\(\textbf{A}=\begin{bmatrix} 1&amp;2 \\ 2&amp;3 \end{bmatrix}\)` menggunakan Operasi Baris Elementer.
-
-### `\(\left[\begin{array}{cc|cc} 1&amp;2&amp;1&amp;0 \\ 2&amp;3&amp;0&amp;1 \end{array}\right] \xrightarrow{B_{21(-2)}} \left[\begin{array}{cc|cc} 1&amp;2&amp;1&amp;0 \\ 0&amp;-1&amp;-2&amp;1 \end{array}\right] \xrightarrow{B_{2(-1)}}\)`
-
-### `\(\left[\begin{array}{cc|cc} 1&amp;2&amp;1&amp;0 \\ 0&amp;1&amp;2&amp;-1 \end{array}\right] \xrightarrow{B_{12(-2)}} \left[ \begin{array}{cc|cc} 1&amp;0&amp;-3&amp;2 \\ 0&amp;1&amp;2&amp;-1 \end{array} \right]\)`
-
----
-
-.pull.center[
-# **Latihan**]
-
-### 1. Tentukan invers matriks-matriks berikut.
-
-### `\(\textbf{A}=\begin{bmatrix} 3&amp;-1 \\ -5&amp;2 \end{bmatrix} \hspace{2cm} \textbf{B}=\begin{bmatrix} -5&amp;5&amp;1 \\ 5&amp;-6&amp;2 \\ 1&amp;2&amp;-1 \end{bmatrix}\)`
-
----
-
-.pull.center[
-# **Latihan**]
-
-### 2. Lengkapilah Operasi Baris Elementer berikut.
-
-### `\(\textbf{A}=\begin{bmatrix} 1&amp;2&amp;1 \\ 3&amp;0&amp;2 \\ 2&amp;3&amp;1 \end{bmatrix} \xrightarrow{B_{21(-3)}} \begin{bmatrix} 1&amp;2&amp;1 \\ \dots&amp;\dots&amp;\dots \\ 2&amp;3&amp;1 \end{bmatrix} \xrightarrow{B_{31(-2)}} \begin{bmatrix} \end{bmatrix} \xrightarrow{B_{23}}\)`
-
-### `\(\begin{bmatrix} \end{bmatrix} \xrightarrow{B_{2(-1)}} \begin{bmatrix} \end{bmatrix} \xrightarrow{B_{32(6)}} \begin{bmatrix} \end{bmatrix} \xrightarrow{B_{3(\frac{1}{5})}} \begin{bmatrix} \end{bmatrix} \xrightarrow{B_{23(-1)}} \begin{bmatrix} \end{bmatrix} \xrightarrow{B_{12(-2)}}\begin{bmatrix} \end{bmatrix} \xrightarrow{B_{13(-1)}} \begin{bmatrix} \end{bmatrix}\)`
-
-
----
-
-.pull.center[
-# **Latihan**]
-
-### 3. Tentukan invers matriks-matriks berikut dengan operasi baris elementer.
-
-### `\(\textbf{A}=\begin{bmatrix} 2&amp;5 \\ 1&amp;2 \end{bmatrix} \hspace{2cm} \textbf{B}=\begin{bmatrix} 1&amp;2&amp;1 \\ 3&amp;0&amp;2 \\ 2&amp;3&amp;1 \end{bmatrix}\)`
+### `\(\textbf{A}=\begin{bmatrix} 4&amp;1&amp;2 \\ 1&amp;1&amp;5 \\ 3&amp;1&amp;3 \end{bmatrix}\)`
 
 ---
 
